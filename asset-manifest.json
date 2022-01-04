@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/disney-plus/static/css/main.3b9c05e4.css",
+    "main.js": "/disney-plus/static/js/main.8f9bf8ce.js",
+    "index.html": "/disney-plus/index.html",
+    "main.3b9c05e4.css.map": "/disney-plus/static/css/main.3b9c05e4.css.map",
+    "main.8f9bf8ce.js.map": "/disney-plus/static/js/main.8f9bf8ce.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3b9c05e4.css",
+    "static/js/main.8f9bf8ce.js"
+  ]
+}
