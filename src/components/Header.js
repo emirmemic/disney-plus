@@ -1,29 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import img1 from "../images/logo.svg";
+import img2 from "../images/home-icon.svg";
+import img3 from "../images/search-icon.svg";
+import img4 from "../images/watchlist-icon.svg";
+import img5 from "../images/movie-icon.svg";
+import img6 from "../images/series-icon.svg";
 
 function Header() {
   return (
     <Nav>
-      <Logo src="/images/logo.svg" />
+      <Logo src={img1} />
       <NavMenu>
         <a>
-          <img src="/images/home-icon.svg" />
+          <img src={img2} />
           <span>HOME</span>
         </a>
         <a>
-          <img src="/images/search-icon.svg" />
+          <img src={img3} />
           <span>SEARCH</span>
         </a>
         <a>
-          <img src="/images/watchlist-icon.svg" />
+          <img src={img4} />
           <span>WATCHLIST</span>
         </a>
         <a>
-          <img src="/images/movie-icon.svg" />
+          <img src={img5} />
           <span>MOVIES</span>
         </a>
         <a>
-          <img src="/images/series-icon.svg" />
+          <img src={img6} />
           <span>SERIES</span>
         </a>
       </NavMenu>
