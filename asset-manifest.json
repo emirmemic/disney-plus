@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/disney-plus/static/css/main.601009c0.css",
-    "main.js": "/disney-plus/static/js/main.540d2e08.js",
+    "main.js": "/disney-plus/static/js/main.92698141.js",
     "static/media/home-background.png": "/disney-plus/static/media/home-background.a0c4bdd961442f1bc8b1.png",
     "static/media/slider-scale.jpg": "/disney-plus/static/media/slider-scale.172c6eadbd086a14e2b2.jpg",
     "static/media/slider-badag.jpg": "/disney-plus/static/media/slider-badag.36599446c404fd8b5989.jpg",
@@ -21,10 +21,10 @@
     "static/media/watchlist-icon.svg": "/disney-plus/static/media/watchlist-icon.0b5a945bede19872d5d95984d35ce12d.svg",
     "static/media/home-icon.svg": "/disney-plus/static/media/home-icon.b6a11f9b406f2f13cd82608a276428e5.svg",
     "main.601009c0.css.map": "/disney-plus/static/css/main.601009c0.css.map",
-    "main.540d2e08.js.map": "/disney-plus/static/js/main.540d2e08.js.map"
+    "main.92698141.js.map": "/disney-plus/static/js/main.92698141.js.map"
   },
   "entrypoints": [
     "static/css/main.601009c0.css",
-    "static/js/main.540d2e08.js"
+    "static/js/main.92698141.js"
   ]
 }
