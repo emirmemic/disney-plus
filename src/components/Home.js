@@ -3,12 +3,14 @@ import styled from "styled-components";
 import img7 from "../assets/images/home-background.png";
 import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
+import Movies from "./Movies";
 
 function Home() {
   return (
     <Container bgImage={img7}>
       <ImgSlider />
       <Viewers />
+      <Movies />
     </Container>
   );
 }
