@@ -6,31 +6,33 @@ import img3 from "../assets/images/search-icon.svg";
 import img4 from "../assets/images/watchlist-icon.svg";
 import img5 from "../assets/images/movie-icon.svg";
 import img6 from "../assets/images/series-icon.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <Nav>
       <Logo src={img1} />
       <NavMenu>
-        <a>
+        <Link to="/home">
           <img src={img2} />
           <span>HOME</span>
-        </a>
-        <a>
-          <img src={img3} />
-          <span>SEARCH</span>
-        </a>
-        <a>
+        </Link>
+        
+        <a href="https://www.disney.com/">
           <img src={img4} />
           <span>WATCHLIST</span>
         </a>
-        <a>
+        <a href="https://movies.disney.com/all-movies">
           <img src={img5} />
           <span>MOVIES</span>
         </a>
-        <a>
+        <a href="https://shows.disney.com/">
           <img src={img6} />
           <span>SERIES</span>
+        </a>
+        <a href="https://search.disney.com/">
+          <img src={img3} />
+          <span>SEARCH</span>
         </a>
       </NavMenu>
       <UserImg src="https://swisscognitive.ch/wp-content/uploads/2017/07/Walt-Disney-Studios.jpg" />
@@ -54,12 +56,15 @@ const Logo = styled.img`
 `;
 
 const NavMenu = styled.div`
+  
   display: flex;
   flex: 1;
   margin-left: 25px;
   align-items: center;
 
   a {
+    color: white;
+    text-decoration: none;
     display: flex;
     align-items: center;
     padding: 0 12px;
@@ -95,6 +100,9 @@ const NavMenu = styled.div`
       }
     }
   }
+  @media (max-width: 768px) {
+    display: none;
+  } 
 `;
 
 const UserImg = styled.img`

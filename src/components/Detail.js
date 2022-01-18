@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import img16 from '../assets/images/play-icon-black.png'
 import img17 from '../assets/images/play-icon-white.png'
@@ -6,6 +6,7 @@ import img18 from '../assets/images/group-icon.png'
 
 
 function Detail() {
+    const[showVideo, setShowVideo]=useState(false)
     return (
         <Container>
             <Background>
@@ -19,10 +20,11 @@ function Detail() {
                     <img src={img16} />
                     <span>PLAY</span>
                 </PlayButton>
-                <TrailerButton>
+                <TrailerButton onClick={()=>{setShowVideo(!showVideo)}}>
                     <img src={img17} />
                     <span>TRAILER</span>
                 </TrailerButton>
+                {showVideo&&<div>VIDEO</div>}
                 <AddButton>
                     <span>+</span>
                 </AddButton>
@@ -62,6 +64,10 @@ const Background = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        @media (max-width: 768px) {
+      width: initial;
+    }
     }
 `
 
@@ -70,6 +76,7 @@ const ImageTitle = styled.div`
     min-height: 170px;
     width: 35vw;
     min-width: 200px;
+    margin-top: 60px;
 
     img{
         width: 100%;
@@ -141,5 +148,6 @@ const Description = styled.div`
     font-size: 20px;
     margin-top: 16px;
     color: rgb(249, 249, 249);
+    max-width: 760px;
 
 `

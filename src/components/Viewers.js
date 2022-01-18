@@ -10,19 +10,29 @@ function Viewers() {
   return (
     <Container>
       <Wrap>
+        <a href="https://www.disney.com/"> 
         <img src={img10} />
+        </a>
       </Wrap>
       <Wrap>
+        <a href="https://www.pixar.com/">
         <img src={img11} />
+        </a>
       </Wrap>
       <Wrap>
+        <a href="https://www.marvel.com/"> 
         <img src={img12} />
+        </a>
       </Wrap>
       <Wrap>
+        <a href="https://www.starwars.com/">
         <img src={img13} />
+        </a>
       </Wrap>
       <Wrap>
+        <a href="https://www.nationalgeographic.com/"> 
         <img src={img14} />
+        </a>
       </Wrap>
     </Container>
   );
@@ -36,6 +46,10 @@ const Container = styled.div`
   padding: 30px 0px, 26px;
   grid-gap: 25px;
   grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 `;
 
 const Wrap = styled.div`

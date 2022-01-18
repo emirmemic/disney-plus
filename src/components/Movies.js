@@ -1,36 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-function Movies() {
+function Movies(props) {
+  console.log(props.movies)
   return (
     <Container>
       <h4>Recommended for You</h4>
       <Content>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        <Wrap>
-          <img src="https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg" />
-        </Wrap>
-        
+        {props.movies&&props.movies.map((movie)=>{
+          
+         return <Wrap key={movie.backgroundImg}>
+            <img src={movie.backgroundImg} alt="" />
+            
+          </Wrap>
+          
+        })}
       </Content>
     </Container>
   );
@@ -41,13 +25,21 @@ export default Movies;
 const Container = styled.div``;
 
 const Content = styled.div`
+
   display: grid;
   grid-gap: 15px;
   grid-template-columns: repeat(4, minmax(0,1fr));
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
   
 `;
 
 const Wrap = styled.div`
+
+  
   border-radius: 10px;
   cursor: pointer;
   overflow: hidden;

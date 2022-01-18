@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import img7 from "../assets/images/home-background.png";
 import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
 import Movies from "./Movies";
+import {db} from "../firebase"
+import { collection, getDocs } from "firebase/firestore/lite";
+import { useState } from "react";
+import dummyMovies from "../dummyMovies"
 
 function Home() {
+
+  const[movies, setMovies]= useState()
+
+  const getMovies = async()=> {
+    const movies = collection(db, 'movies');
+    const moviesSnapshot = await getDocs(movies);
+    const moviesList = moviesSnapshot.docs.map(doc => doc.data());
+    console.log("belaa")
+
+    return moviesList;
+  }
+  //useEffect(()=>{
+    //getMovies().then((res)=>{setMovies(res)}).catch()
+  //},[])
+ 
+  useEffect(()=>{
+    setMovies(dummyMovies)
+  }, [])
+
+
   return (
     <Container bgImage={img7}>
       <ImgSlider />
       <Viewers />
-      <Movies />
+      <Movies movies={movies}/>
     </Container>
-  );
+  )
 }
 
 export default Home;
