@@ -100,9 +100,9 @@ const NavMenu = styled.div`
       }
     }
   }
-  @media (max-width: 768px) {
-    display: none;
-  } 
+  //@media (max-width: 768px) {
+    //display: none;
+  //} 
 `;
 
 const UserImg = styled.img`
