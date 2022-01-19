@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore/lite";
 import { useState } from "react";
 import dummyMovies from "../dummyMovies"
 
+
 function Home() {
 
   const[movies, setMovies]= useState()
@@ -17,17 +18,16 @@ function Home() {
     const movies = collection(db, 'movies');
     const moviesSnapshot = await getDocs(movies);
     const moviesList = moviesSnapshot.docs.map(doc => doc.data());
-    console.log("belaa")
 
     return moviesList;
   }
-  //useEffect(()=>{
-    //getMovies().then((res)=>{setMovies(res)}).catch()
-  //},[])
- 
   useEffect(()=>{
-    setMovies(dummyMovies)
-  }, [])
+    getMovies().then((res)=>{setMovies(res)}).catch()
+  },[])
+ 
+  //useEffect(()=>{
+    //setMovies(dummyMovies)
+  //}, [])
 
 
   return (

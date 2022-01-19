@@ -1,30 +1,54 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import img16 from '../assets/images/play-icon-black.png'
 import img17 from '../assets/images/play-icon-white.png'
 import img18 from '../assets/images/group-icon.png'
-
+import { useLocation, useParams } from "react-router-dom"
+import {db} from "../firebase"
+import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import ReactPlayer from 'react-player'
 
 function Detail() {
     const[showVideo, setShowVideo]=useState(false)
+    const {id} = useParams();
+    const[movie, setMovie]= useState();
+
+
+    const getMovie = async()=> {
+      const movie = collection(db, 'movies');
+      const q = query(movie, where("id", "==", id))
+      const moviesSnapshot = await getDocs(q);
+      const m = moviesSnapshot.docs.map(doc => doc.data());
+        console.log(m[0])
+      return m[0];
+    }
+    useEffect(()=>{
+      getMovie().then((doc)=>{setMovie(doc)}).catch()
+    },[id])
+
+    
     return (
+        <> 
+        {showVideo&&<ReactPlayerWrapper onClick={()=>setShowVideo(false)}>
+            <ReactPlayer width="80%" height="80%" url={movie.trailer}/>
+            </ReactPlayerWrapper>}
         <Container>
             <Background>
-                <img src="https://cdn.vox-cdn.com/thumbor/wJ71E7nJ_4Wj0btm5seEnHNJ4Xk=/0x0:4096x2304/1200x800/filters:focal(1973x1175:2627x1829)/cdn.vox-cdn.com/uploads/chorus_image/image/60190709/BO_RGB_s120_22a_cs_pub.pub16.318.0.jpg" />
-            </Background>
+                <img src={movie&&movie.backgroundImg}></img>
+                </Background>
             <ImageTitle>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/EF737B93E2F2ABE27C74CBBEB322F18A421E7986129E9989587CEF2295B0447F/scale?width=1344&aspectRatio=1.78&format=png" />
+                <img src={movie&&movie.titleImg} />
             </ImageTitle>
             <Controls>
                 <PlayButton>
                     <img src={img16} />
                     <span>PLAY</span>
                 </PlayButton>
-                <TrailerButton onClick={()=>{setShowVideo(!showVideo)}}>
+                {movie&&movie.trailer&&<TrailerButton onClick={()=>{setShowVideo(!showVideo)}}>
                     <img src={img17} />
                     <span>TRAILER</span>
-                </TrailerButton>
-                {showVideo&&<div>VIDEO</div>}
+                </TrailerButton>}
+                
                 <AddButton>
                     <span>+</span>
                 </AddButton>
@@ -34,21 +58,40 @@ function Detail() {
 
             </Controls>
             <SubTitle>
-                2018 * 7m * Family, Fantasy, Kids, Animation
+                {movie&&movie.year&&movie.year} * {movie&&movie.duration&&movie.duration}m * {movie&&movie.genre&&movie.genre.map((g)=>{
+                    return <Genre>{g}</Genre>
+                })}
             </SubTitle>
             <Description>
-            In  “Bao,” an aging Chinese mom suffering from empty nest syndrome gets another chance at motherhood when one of her dumplings springs to life as a lively, giggly dumpling boy. Mom excitedly welcomes this new bundle of joy into her life, but Dumpling starts growing up fast, and Mom must come to the bittersweet revelation that nothing stays cute and small forever.
+                {movie&&movie.description}
             </Description>
         </Container>
+        </>
     ) 
 }
 
 export default Detail
 
+const ReactPlayerWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 const Container = styled.div`
     min-height: calc(100vh - 70px);
     padding: 0 calc(3.5vw + 5px);
     position: relative;
+`
+const Genre = styled.span`
+    padding: 0 10px;
 `
 
 const Background = styled.div`
@@ -148,6 +191,7 @@ const Description = styled.div`
     font-size: 20px;
     margin-top: 16px;
     color: rgb(249, 249, 249);
+    box-shadow: black;
     max-width: 760px;
 
 `

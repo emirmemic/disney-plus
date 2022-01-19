@@ -62,6 +62,10 @@ const NavMenu = styled.div`
   margin-left: 25px;
   align-items: center;
 
+  @media (max-width: 768px) {
+    display: none;
+  } 
+
   a {
     color: white;
     text-decoration: none;
@@ -100,9 +104,7 @@ const NavMenu = styled.div`
       }
     }
   }
-  //@media (max-width: 768px) {
-    //display: none;
-  //} 
+  
 `;
 
 const UserImg = styled.img`

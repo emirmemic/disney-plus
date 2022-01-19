@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function Movies(props) {
   console.log(props.movies)
@@ -7,11 +8,13 @@ function Movies(props) {
     <Container>
       <h4>Recommended for You</h4>
       <Content>
-        {props.movies&&props.movies.map((movie)=>{
+        {props.movies&&props.movies.map((movie, key)=>{
           
-         return <Wrap key={movie.backgroundImg}>
+         return <Wrap key={key}>
+           
+           <Link to={`/detail/${movie.id}`}>
             <img src={movie.backgroundImg} alt="" />
-            
+            </Link>
           </Wrap>
           
         })}
