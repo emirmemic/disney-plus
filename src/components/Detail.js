@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import styled from 'styled-components'
 import img16 from '../assets/images/play-icon-black.png'
 import img17 from '../assets/images/play-icon-white.png'
@@ -11,7 +12,7 @@ import ReactPlayer from 'react-player'
 function Detail() {
     const[showVideo, setShowVideo]=useState(false)
     const {id} = useParams();
-    const[movie, setMovie]= useState();
+    const[movie,  setMovie]= useState();
 
 
     const getMovie = async()=> {
@@ -22,7 +23,7 @@ function Detail() {
         console.log(m[0])
       return m[0];
     }
-    useEffect(()=>{
+    useEffect((key)=>{
       getMovie().then((doc)=>{setMovie(doc)}).catch()
     },[id])
 
@@ -88,7 +89,7 @@ const ReactPlayerWrapper = styled.div`
 const Container = styled.div`
     min-height: calc(100vh - 70px);
     padding: 0 calc(3.5vw + 5px);
-    position: relative;
+    position: absolute;
 `
 const Genre = styled.span`
     padding: 0 10px;
@@ -102,11 +103,16 @@ const Background = styled.div`
     right: 0;
     z-index: -1;
     opacity: 0.8;
+    
+    
 
     img{
+        
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        
+        background-size: cover;
+        
 
         @media (max-width: 768px) {
       width: initial;
@@ -115,16 +121,20 @@ const Background = styled.div`
 `
 
 const ImageTitle = styled.div`
-    height: 30vh;
+    height: 45vh;
     min-height: 170px;
-    width: 35vw;
+    width: 10vw;
     min-width: 200px;
-    margin-top: 60px;
+    //margin-top: 5px;
+    
 
     img{
         width: 100%;
-        height: 100%;
-        object-fit: contain;
+        height: 70%;
+        margin: 50px;
+        margin-top: 85px;
+        //object-fit: cover;
+        border-radius: 5%;
     }
 
 `
@@ -147,7 +157,7 @@ const PlayButton = styled.button`
     cursor: pointer;
 
     &:hover {
-        background: rgb(198, 1987, 198);
+        background: rgb(198, 198, 198);
     }
 `
 
@@ -184,6 +194,8 @@ const SubTitle = styled.div`
     font: 15px;
     min-height: 20px;
     margin-top: 26px;
+    text-shadow: 2px 2px black;
+    
 `
 
 const Description = styled.div`
@@ -193,5 +205,6 @@ const Description = styled.div`
     color: rgb(249, 249, 249);
     box-shadow: black;
     max-width: 760px;
+    text-shadow: 2px 2px black;
 
 `

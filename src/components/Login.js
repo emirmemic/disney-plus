@@ -3,9 +3,37 @@ import styled from 'styled-components'
 import img19 from '../assets/images/login-background.jpg'
 import img20 from '../assets/images/cta-logo-one.svg'
 import img21 from '../assets/images/cta-logo-two.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUserName, selectUserPhoto, setUserLogin } from '../features/user/userSlice'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth } from '../firebase'
 
 
 function Login() {
+
+const dispatch = useDispatch();
+
+  const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+  const signIn = () => {
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    
+    dispatch(setUserLogin({
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL
+    }))
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+  });
+  }
     return (
         <Container bgImage19={img19}>
             <CTA>
