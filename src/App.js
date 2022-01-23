@@ -24,7 +24,7 @@ function App() {
       <Route
         {...restOfProps}
         render={(props) =>
-          email ? <Component {...props} /> : <Redirect to="/login" />
+          email ? <Component {...props} /> : <Redirect to="/disney-plus/login" />
         }
       />
     );
