@@ -12,7 +12,7 @@ function Movies(props) {
           
          return <Wrap key={key}>
            
-           <Link to={`/detail/${movie.id}`}>
+           <Link to={`/disney-plus/detail/${movie.id}`}>
             <img src={movie.backgroundImg} alt="" />
             </Link>
           </Wrap>
