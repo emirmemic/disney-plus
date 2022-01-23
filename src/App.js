@@ -35,9 +35,9 @@ function App() {
        <Header />
        <Switch>
          
-         <Route path="/login" component={Login}/>
-         <ProtectedRoute path="/detail/:id" component={Detail} />
-         <ProtectedRoute path="/" component={Home} />
+         <Route path="/disney-plus/login" component={Login}/>
+         <ProtectedRoute path="/disney-plus/detail/:id" component={Detail} />
+         <ProtectedRoute path="/disney-plus/" component={Home} />
        </Switch>
       </Router>
     </div>

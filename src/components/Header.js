@@ -39,7 +39,7 @@ const history=useHistory()
             photo: user.photoURL,
           })
         );
-        history.push('/')
+        history.push('/disney-plus/')
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -60,7 +60,7 @@ const history=useHistory()
       ) : (
         <>
           <NavMenu>
-            <Link to="/">
+            <Link to="/disney-plus/">
               <img src={img2} />
               <span>HOME</span>
             </Link>
